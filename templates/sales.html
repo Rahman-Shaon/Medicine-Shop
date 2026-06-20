@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Sales Log</h2>
+    <a href="{{ url_for('medicines') }}" class="btn btn-success">Sell Medicine</a>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Sale ID</th>
+            <th>Medicine Name</th>
+            <th>Quantity Sold</th>
+            <th>Total Price (tk)</th>
+            <th>Date & Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sale in sales %}
+        <tr>
+            <td>{{ sale.sale_id }}</td>
+            <td>{{ sale.medicine_name }}</td>
+            <td>{{ sale.quantity }}</td>
+            <td>{{ "%.2f"|format(sale.total_price) }} tk</td>
+            <td>{{ sale.date }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5" style="text-align: center;">No sales recorded yet.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

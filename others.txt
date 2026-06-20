@@ -1,0 +1,28 @@
+
+    # if search_query:
+    #     cursor.execute("""
+    #         SELECT 
+    #             ROW_NUMBER() OVER (ORDER BY id DESC) AS serial_no,
+    #             id,
+    #             name,
+    #             category,
+    #             price,
+    #             quantity,
+    #             expiry_date
+    #         FROM medicines
+    #         WHERE name LIKE %s
+    #         ORDER BY id DESC
+    #     """, ('%' + search_query + '%',))
+    # else:
+    #     cursor.execute("""
+    #         SELECT 
+    #             ROW_NUMBER() OVER (ORDER BY id DESC) AS serial_no,
+    #             id,
+    #             name,
+    #             category,
+    #             price,
+    #             quantity,
+    #             expiry_date
+    #         FROM medicines
+    #         ORDER BY id DESC
+    #     """)

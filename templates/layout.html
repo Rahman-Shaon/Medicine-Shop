@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Shop Management System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <h1>Medicine Shop</h1>
+        <div class="nav-links">
+            {% if session.get('logged_in') %}
+                <a href="{{ url_for('index') }}">Dashboard</a>
+                <a href="{{ url_for('medicines') }}">Medicines</a>
+                <a href="{{ url_for('sales') }}">Sales Log</a>
+                <a href="{{ url_for('logout') }}" class="btn" style="background: transparent; color: white; border: 1px solid white;">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

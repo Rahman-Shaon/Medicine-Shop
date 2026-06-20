@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Dashboard</h2>
+    <div>
+        <a href="{{ url_for('add_medicine') }}" class="btn">Add Medicine</a>
+        <a href="{{ url_for('medicines') }}" class="btn btn-success">Sell Medicine</a>
+    </div>
+</div>
+
+<div class="dashboard">
+    <div class="card">
+        <h3>Total Medicines</h3>
+        <p class="number">{{ total_medicines }}</p>
+    </div>
+    <div class="card">
+        <h3>Total Sales Revenue</h3>
+        <p class="number">{{ "%.2f"|format(total_sales_revenue) }} tk</p>
+    </div>
+</div>
+
+
+{% if low_stock %}
+<div class="alert alert-warning">
+    <strong>Warning:</strong> The following medicines are running low on stock (less than 10):
+    <ul>
+        {% for med in low_stock %}
+            <li>{{ med.name }} - Qty: {{ med.quantity }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% if expired %}
+<div class="alert alert-danger">
+    <strong>Danger:</strong> The following medicines are expired or expiring within 30 days:
+    <ul>
+        {% for med in expired %}
+            <li>{{ med.name }} - Exp: {{ med.expiry_date }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% endblock %}

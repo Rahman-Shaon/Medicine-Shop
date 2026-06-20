@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Sale Successful - Bill Detail</h2>
+    <div>
+        <button onclick="window.print()" class="btn">Print Bill</button>
+        <a href="{{ url_for('medicines') }}" class="btn btn-success">Back to Medicines</a>
+    </div>
+</div>
+
+<div class="card" style="max-width: 500px; margin: 0 auto; text-align: left;">
+    <h3 style="text-align: center; border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 15px;">Official Receipt</h3>
+    
+    <p><strong>Medicine Name:</strong> {{ bill_data.medicine_name }}</p>
+    <p><strong>Quantity Sold:</strong> {{ bill_data.quantity }}</p>
+    <p><strong>Unit Price:</strong> {{ "%.2f"|format(bill_data.unit_price) }} tk</p>
+    
+    <hr style="margin: 15px 0;">
+    
+    <h3 style="text-align: right;">Total Paid: {{ "%.2f"|format(bill_data.total_price) }} tk</h3>
+    <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #777;">Thank you for your purchase!</p>
+</div>
+
+{% endblock %}
